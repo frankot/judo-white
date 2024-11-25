@@ -1,0 +1,13 @@
+
+
+export default function Hero() {
+  return (
+    <div
+      className="h-[40rem] md:h-[50rem] w-full z-20 bg-center bg-cover  bg-fixed font-[family-name:var(--font-barlow)]"
+      style={{ backgroundImage: "url('/bg5.png')" }}
+    >
+      <div className="absolute left-0 top-0 h-[40rem] md:h-[50rem] w-full bg-black bg-opacity-30"></div>
+
+    </div>
+  );
+}
