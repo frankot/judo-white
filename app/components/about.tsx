@@ -36,7 +36,7 @@ export default function About() {
         <motion.div
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "200px" }}
+          viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6 }}
           className="relative backdrop-blur-sm mt-10 flex h-fit w-1/3 flex-col justify-center p-6"
         >
@@ -58,10 +58,10 @@ export default function About() {
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 100 }}
-          whileInView={{ opacity: 1, y: -70 }}
+          whileInView={{ opacity: 1, y: -90 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex w-1/3 items-center p-10 rounded-t justify-center rounded"
+          className="flex w-1/3 items-center p-10 rounded-t z-30 justify-center rounded"
         >
           <Image
             src="/kano.png"
@@ -74,7 +74,7 @@ export default function About() {
         <motion.div
           initial={{ opacity: 0, x: 100 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6 }}
           className="flex w-1/3 h-fit mt-32 p-6 flex-col justify-center relative"
         >
