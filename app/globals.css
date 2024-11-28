@@ -2,19 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
-  --background: #000000;
+  --background: #e5e1e1;
   --foreground: #171717;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* Dark mode styles (uncomment if needed)
-@media (prefers-color-scheme: dark) {
+@media (min-width: 768px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #171717;
   }
 }
-*/
 
 body {
   color: var(--foreground);
@@ -22,8 +26,4 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
+

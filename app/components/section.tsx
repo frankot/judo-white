@@ -8,10 +8,10 @@ export default function Section() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="relative mt-20 h-[30rem] w-full"
+      className="relative mt-20 h-[30rem] w-full md:w-[calc(100%-2.5rem)] md:m-5 "
     >
-      <div className="absolute inset-0 bg-[url('/bg1.jpg')] bg-cover bg-fixed bg-center bg-no-repeat" />
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-[url('/bg1.jpg')] bg-cover bg-fixed bg-center bg-no-repeat md:rounded-xl" />
+      <div className="absolute inset-0 bg-black/30 md:rounded-xl" />
 
       <div className="relative flex h-full flex-col items-center pt-5">
         <div className="mb-10">

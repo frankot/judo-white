@@ -96,13 +96,13 @@ export default function About() {
       </div>
 
       {/* Mobile Layout */}
-      <div className="z-20 mx-auto flex md:hidden flex-col px-4 overflow-visible">
+      <div className="mx-auto px-10 flex md:hidden flex-col relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: -70 }}
+          whileInView={{ opacity: 1, y: -30 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex items-center justify-center py-8"
+          className="flex items-center justify-center  relative z-10"
         >
           <Image
             src="/kano.png"
@@ -113,6 +113,29 @@ export default function About() {
           />
         </motion.div>
 
+        
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col justify-center p-4  relative mb-16"
+        >
+          <SvgBottomRight />
+          <h1 className="mb-4 font-[family-name:var(--font-storm)] text-3xl">
+            Jigoro Kano
+          </h1>
+          <p className="font-[family-name:var(--font-barlow)] text-base">
+            Judo pochodzi z Japonii. Jego twórcą był Jigoro KANO (1860-1938).
+            Zebrał i ulepszył chwyty jiu-jitsu, eliminując uderzenia, kopnięcia
+            i inne elementy walki mogące zagrozić zdrowiu i życiu, nadając im
+            nową formę.{" "}
+          </p>
+          <p className="mt-4 font-[family-name:var(--font-barlow)] text-base">
+            Wierzymy, że judo to nie tylko sport, ale droga do samodoskonalenia
+            i budowania silnego charakteru.
+          </p>
+        </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -136,28 +159,6 @@ export default function About() {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col justify-center p-4 relative mt-8"
-        >
-          <SvgBottomRight />
-          <h1 className="mb-4 font-[family-name:var(--font-storm)] text-3xl">
-            Jigoro Kano
-          </h1>
-          <p className="font-[family-name:var(--font-barlow)] text-base">
-            Judo pochodzi z Japonii. Jego twórcą był Jigoro KANO (1860-1938).
-            Zebrał i ulepszył chwyty jiu-jitsu, eliminując uderzenia, kopnięcia
-            i inne elementy walki mogące zagrozić zdrowiu i życiu, nadając im
-            nową formę.{" "}
-          </p>
-          <p className="mt-4 font-[family-name:var(--font-barlow)] text-base">
-            Wierzymy, że judo to nie tylko sport, ale droga do samodoskonalenia
-            i budowania silnego charakteru.
-          </p>
-        </motion.div>
       </div>
     </div>
   );

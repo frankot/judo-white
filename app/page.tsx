@@ -17,7 +17,6 @@ export default function Home() {
         style={{ backgroundImage: "url('/kanji.png')" }}
       />
       <About />
-      {/* <Divider /> */}
       <News />
       <Section />
       <Contact />

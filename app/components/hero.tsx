@@ -16,10 +16,10 @@
 export default function Hero() {
   return (
     <div
-      className="h-[40rem] md:h-[50rem] w-[calc(100%-2.5rem)] mx-auto my-5 rounded-xl z-20 bg-center bg-cover bg-fixed  relative"
+      className="h-[40rem] md:h-[90vh] shadow-xl w-full   z-10 bg-center bg-cover md:bg-fixed  relative"
       style={{ backgroundImage: "url('/bg5.png')" }}
     >
-      <div className="absolute inset-0 rounded-xl bg-black bg-opacity-30"></div>
+      <div className="absolute inset-0  bg-black bg-opacity-30"></div>
 
     </div>
   );

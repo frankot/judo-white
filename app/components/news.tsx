@@ -72,7 +72,7 @@ export default function News() {
     <div className="relative w-screen py-16">
       <Title title="Aktualnosci" />
 
-      <div className="mx-auto grid max-w-7xl  md:grid-cols-4 gap-8 px-4">
+      <div className="mx-auto grid max-w-7xl  md:grid-cols-4 gap-8 px-10 lg:px-4">
         {newsItems.map((item) => (
           <div
             key={item.id}
