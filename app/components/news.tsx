@@ -1,5 +1,19 @@
 import Title from "./UI/title";
 
+export interface NewsItem {
+  id: string;
+  title: string;
+  slug: string;
+  date: string;
+  shortDescription: string;
+  fullContent: {
+    html: string;
+  };
+  image: {
+    url: string;
+  };
+}
+
 const newsItems = [
   {
     id: 1,
@@ -72,7 +86,7 @@ export default function News() {
     <div className="relative w-screen py-16">
       <Title title="Aktualnosci" />
 
-      <div className="mx-auto grid max-w-7xl  md:grid-cols-4 gap-8 px-10 lg:px-4">
+      <div className="mx-auto grid max-w-7xl  md:grid-cols-4 gap-8 px-6 lg:px-4">
         {newsItems.map((item) => (
           <div
             key={item.id}
@@ -96,7 +110,7 @@ export default function News() {
                 {item.description}
               </p>
             </div>
-            <button className="absolute bottom-2 right-2 flex items-center gap-2 font-[family-name:var(--font-barlow)] text-sm font-semibold uppercase text-black">
+            <button className="absolute bottom-2 right-2 flex items-center gap-2  font-[family-name:var(--font-barlow)] text-sm font-semibold uppercase ">
               Dalej
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +135,7 @@ export default function News() {
              
       </div>
       <div className="w-full flex justify-center mt-10">
-        <button className="font-[family-name:var(--font-barlow)]  uppercase px-6 py-2 bg-black rounded text-white border border-black hover:bg-white hover:text-black transition-all duration-300">
+        <button className="font-[family-name:var(--font-barlow)]   uppercase px-6 py-2 bg-black rounded text-white border border-black hover:bg-white hover:text-black transition-all duration-300">
           Więcej
         </button>
       </div>

@@ -72,11 +72,11 @@ export default function Nav() {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.7 }}
           className={`
-            font-[family-name:var(--font-storm)] transition-all duration-700
+            font-[family-name:var(--font-storm)] transition-all duration-700 whitespace-nowrap
             ${isScrolled ? 'text-5xl md:text-6xl text-black' : 'text-6xl md:text-9xl text-white'}
           `}
         >
-          Judo drako
+          Judo <span className="text-orange-400">drako</span>
         </motion.h1>
 
         {isScrolled && (

@@ -43,7 +43,7 @@ export default function About() {
           <SvgTopLeft />
 
           <h1 className="mb-4 font-[family-name:var(--font-storm)] text-4xl">
-            Czym jest Judo?
+            Czym jest <span className="text-orange-400">Judo </span>
           </h1>
           <p className="font-[family-name:var(--font-barlow)] text-lg">
             Nazwę Judo można tłumaczyć jako &ldquo;drogę do zwinności&ldquo; lub &ldquo;drogę
@@ -80,7 +80,7 @@ export default function About() {
         >
           <SvgBottomRight />
           <h1 className="mb-4 font-[family-name:var(--font-storm)] text-4xl">
-            Jigoro Kano
+           <span className="text-orange-400">Jigoro</span> Kano
           </h1>
           <p className="font-[family-name:var(--font-barlow)] text-lg">
             Judo pochodzi z Japonii. Jego twórcą był Jigoro KANO (1860-1938).
@@ -96,7 +96,7 @@ export default function About() {
       </div>
 
       {/* Mobile Layout */}
-      <div className="mx-auto px-10 flex md:hidden flex-col relative">
+      <div className="mx-auto px-6 flex md:hidden flex-col relative">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: -30 }}

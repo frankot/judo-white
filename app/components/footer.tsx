@@ -13,7 +13,7 @@ export default function Footer() {
     >
       <div className="max-w-7xl mx-auto flex flex-col items-center justify-center">
         <h1 className="font-[family-name:var(--font-storm)] text-4xl md:text-6xl mb-8 -translate-y-6 rounded-xl px-12 pt-7 bg-black">
-          Judo drako
+          Judo <span className="text-orange-400">drako</span>
         </h1>
         <ul className="flex flex-col md:flex-row gap-3 md:gap-8 text-center uppercase font-[family-name:var(--font-barlow)] mb-6">
           {navLinks.map((link, index) => (
