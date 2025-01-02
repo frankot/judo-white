@@ -1,29 +1,59 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
-const navLinks = ["Strona główna", "O nas", "Harmonogram", "Cennik", "Kontakt"];
+const navLinks = [
+  { text: "Strona główna", href: "/" },
+  { text: "O nas", href: "/o-nas" },
+  { 
+    text: "Zapisy",
+    href: "/form",
+    dropdown: [
+      { text: "Zgłoszenie członkowskie", type: "membership" },
+      { text: "Obozy / Półkolonie", type: "camps" },
+      { text: "Wydarzenia klubowe", type: "events" }
+    ]
+  },
+  { text: "Wydarzenia", href: "/aktualnosci" },
+  { text: "Kontakt", href: "/#kontakt" }
+];
 
 export default function Nav() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+  const [isScrolled, setIsScrolled] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isZapisyOpen, setIsZapisyOpen] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrolled = window.scrollY > 50;
-      setIsScrolled(scrolled);
-      if (!scrolled) {
-        setIsMobileMenuOpen(false);
+      // Only check scroll position on homepage
+      if (pathname === "/") {
+        const scrolled = window.scrollY > 50;
+        setIsScrolled(scrolled);
+        if (!scrolled) {
+          setIsMobileMenuOpen(false);
+        }
       }
     };
     
-    handleScroll();
+    // Set initial scroll state
+    if (pathname === "/") {
+      handleScroll();
+    } else {
+      setIsScrolled(true);
+    }
+
     window.addEventListener("scroll", handleScroll);
     
     const handleClickOutside = (event: MouseEvent) => {
       const nav = document.querySelector("nav");
       if (nav && !nav.contains(event.target as Node)) {
         setIsMobileMenuOpen(false);
+        setIsZapisyOpen(false);
       }
     };
 
@@ -33,7 +63,7 @@ export default function Nav() {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [pathname]);
 
   // Effect to handle body scroll lock
   useEffect(() => {
@@ -48,12 +78,45 @@ export default function Nav() {
     };
   }, [isMobileMenuOpen]);
 
+  const handleZapisyClick = (type: string) => {
+    router.push('/form');
+    // Use a small delay to ensure the form is in view before setting type
+    setTimeout(() => {
+      const formElement = document.getElementById('form');
+      if (formElement) {
+  
+        // Dispatch a custom event that the form will listen to
+        window.dispatchEvent(new CustomEvent('setFormType', { detail: type }));
+      }
+    }, 100);
+    setIsZapisyOpen(false);
+  };
+
   return (
-    <div className="relative z-50 flex w-full justify-center">
+    <div className="relative z-50 flex w-full justify-center scroll-smooth">
       {/* Black overlay when mobile menu is open */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm md:hidden" />
       )}
+
+      {/* Active Now Panel */}
+      {isScrolled && (
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="fixed left-0 bottom-5 md:bottom-auto md:top-1/3 bg-white/30 backdrop-blur-md p-4 -translate-y-1/2 z-50 rounded-r-xl"
+        >
+          <Link href="https://app.activenow.io/users/sign_in" target="_blank" rel="noopener noreferrer">
+            <img 
+              src="/activeNow.png" 
+              alt="Active Now" 
+              className="w-32 h-auto hover:scale-110 transition-transform duration-300"
+            />
+          </Link>
+        </motion.div>
+      )}
+
       <nav
         className={`
           fixed flex w-[90%] sm:w-[60%] xl:w-[40%] 
@@ -72,11 +135,11 @@ export default function Nav() {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.7 }}
           className={`
-            font-[family-name:var(--font-storm)] transition-all duration-700 whitespace-nowrap
+            font-[family-name:var(--font-storm)] transition-all duration-700 whitespace-nowrap 
             ${isScrolled ? 'text-5xl md:text-6xl text-black' : 'text-6xl md:text-9xl text-white'}
           `}
         >
-          Judo <span className="text-orange-400">drako</span>
+          judo<span className={`${isScrolled ? 'text-orange-400' : ''}`}>DRAKO</span>
         </motion.h1>
 
         {isScrolled && (
@@ -84,15 +147,54 @@ export default function Nav() {
             {/* Desktop Menu */}
             <ul className="bottom-2 my-2 hidden gap-8 md:flex font-[family-name:var(--font-barlow)] font-[300]">
               {navLinks.map((link, index) => (
-                <li key={index} className="cursor-pointer uppercase text-black hover:-translate-y-[2px] duration-300">
-                  {link}
+                <li key={index} className="relative hover:-translate-y-[2px] duration-300">
+                  {link.dropdown ? (
+                    <div className="relative">
+                      <button
+                        onClick={() => setIsZapisyOpen(!isZapisyOpen)}
+                        className="flex items-center gap-1 cursor-pointer uppercase text-black"
+                      >
+                        {link.text}
+                        <svg
+                          className={`w-4 h-4 transition-transform duration-300 ${isZapisyOpen ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      <div className={`
+                        absolute -left-5 top-full mt-2 w-48 bg-white/30 shadow-lg rounded-b-lg overflow-hidden
+                        transition-all duration-300 origin-top backdrop-blur-lg
+                        ${isZapisyOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}
+                      `}>
+                        {link.dropdown.map((dropdownItem, dropIndex) => (
+                          <button
+                            key={dropIndex}
+                            onClick={() => handleZapisyClick(dropdownItem.type)}
+                            className="block px-4 py-2 text-sm text-black hover:bg-gray-100/50 duration-300 w-full text-left"
+                          >
+                            {dropdownItem.text}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <Link 
+                      href={link.href}
+                      className="cursor-pointer uppercase text-black hover:-translate-y-[2px] duration-300"
+                    >
+                      {link.text}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
 
             {/* Mobile Menu Button */}
             <button
-              className="absolute right-3 top-4 p-2 text-black md:hidden"
+              className="absolute right-1 top-5 p-2 text-black md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <svg
@@ -120,8 +222,46 @@ export default function Nav() {
               ${isMobileMenuOpen ? 'max-h-[500px] border-t border-black py-4' : 'max-h-0'}
             `}>
               {navLinks.map((link, index) => (
-                <li key={index} className="cursor-pointer py-3 text-center uppercase text-black hover:text-gray-600 transition-colors">
-                  {link}
+                <li key={index}>
+                  {link.dropdown ? (
+                    <>
+                      <button
+                        onClick={() => setIsZapisyOpen(!isZapisyOpen)}
+                        className="w-full flex items-center justify-center gap-1 py-3 uppercase text-black hover:text-gray-600 transition-colors"
+                      >
+                        {link.text}
+                        <svg
+                          className={`w-4 h-4 transition-transform duration-300 ${isZapisyOpen ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      <div className={`
+                       overflow-hidden transition-all duration-300
+                        ${isZapisyOpen ? 'max-h-48' : 'max-h-0'}
+                      `}>
+                        {link.dropdown.map((dropdownItem, dropIndex) => (
+                          <button
+                            key={dropIndex}
+                            onClick={() => handleZapisyClick(dropdownItem.type)}
+                            className="block py-2 text-center text-sm text-black hover:bg-gray-100 w-full "
+                          >
+                            {dropdownItem.text}
+                          </button>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="block cursor-pointer py-3 text-center uppercase text-black hover:text-gray-600 transition-colors"
+                    >
+                      {link.text}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

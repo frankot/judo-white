@@ -19,7 +19,7 @@ export default function Hero() {
       className="h-[40rem] md:h-[90vh] shadow-xl w-full   z-10 bg-center bg-cover md:bg-fixed  relative"
       style={{ backgroundImage: "url('/bg5.png')" }}
     >
-      <div className="absolute inset-0  bg-black bg-opacity-30"></div>
+      <div className="absolute inset-0  bg-black bg-opacity-30 blur-xl "></div>
 
     </div>
   );

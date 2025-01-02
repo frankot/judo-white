@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import Title from "./UI/title";
+import Title from "../components/UI/title";
 
 const SvgSun = () => (
   <svg
@@ -33,7 +33,7 @@ const SvgSun = () => (
 
 export default function Contact() {
   return (
-    <div id="kontakt" className="bg-white py-20 pb-40">
+    <div className="bg-white py-32 pb-40">
       <div className="mx-auto max-w-7xl px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -44,53 +44,33 @@ export default function Contact() {
           <Title title="Kontakt" />
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-3  gap-12">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="space-y-6 text-black md:ml-10 md:mt-20"
+            className="space-y-6 text-black md:mt-20 md:ml-10"
           >
             <div className="flex items-center">
               <SvgSun />
               <div>
-                <p className="font-[family-name:var(--font-barlow)] font-semibold uppercase">
-                  ADRES
-                </p>
-                <p className="font-[family-name:var(--font-barlow)]">
-                  ul. Arkuszowa 202
-                </p>
-                <p className="font-[family-name:var(--font-barlow)]">
-                  01-934 Warszawa
-                </p>
+                <p className="font-[family-name:var(--font-barlow)] font-semibold uppercase">ADRES</p>
+                <p className="font-[family-name:var(--font-barlow)]">ul. Przykładowa 123</p>
+                <p className="font-[family-name:var(--font-barlow)]">00-000 Warszawa</p>
               </div>
             </div>
             <div className="flex items-center">
               <SvgSun />
               <div>
-                <p className="font-[family-name:var(--font-barlow)] font-semibold uppercase">
-                  TELEFON
-                </p>
-                <a 
-                  href="tel:+48505101233" 
-                  className="font-[family-name:var(--font-barlow)] hover:text-orange-400 transition-colors"
-                >
-                  +48 505 101 233
-                </a>
+                <p className="font-[family-name:var(--font-barlow)] font-semibold uppercase">TELEFON</p>
+                <p className="font-[family-name:var(--font-barlow)]">+48 123 456 789</p>
               </div>
             </div>
             <div className="flex items-center">
               <SvgSun />
               <div>
-                <p className="font-[family-name:var(--font-barlow)] font-semibold uppercase">
-                  EMAIL
-                </p>
-                <a
-                  href="mailto:judodrako@judodrako.pl"
-                  className="font-[family-name:var(--font-barlow)] hover:text-orange-400 transition-colors"
-                >
-                  judodrako@judodrako.pl
-                </a>
+                <p className="font-[family-name:var(--font-barlow)] font-semibold uppercase">EMAIL</p>
+                <p className="font-[family-name:var(--font-barlow)]">kontakt@judodrako.pl</p>
               </div>
             </div>
           </motion.div>

@@ -1,37 +1,69 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+
 export default function Section() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const images = [
+    "https://images.unsplash.com/photo-1585537884613-1a9bcd024983?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGp1ZG98ZW58MHx8MHx8fDA%3D",
+    "https://images.unsplash.com/photo-1515025617920-e1e674b5033c?q=80&w=3012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
+    "https://images.unsplash.com/photo-1542937307-6eeb0267cbab?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8anVkb3xlbnwwfHwwfHx8MA%3D%3D",
+    "https://images.unsplash.com/photo-1542937307-e90d0cc07237?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D",
+    "https://images.unsplash.com/photo-1581392805606-7b7defe63218?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGp1ZG98ZW58MHx8MHx8fDA%3D"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="relative mt-20 h-[30rem] w-full md:w-full "
+      className="relative  h-[40rem] w-full 4 mx-auto  overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[url('/bg1.jpg')] bg-cover bg-fixed bg-center bg-no-repeat " />
-      <div className="absolute inset-0 bg-black/30 " />
-
-      <div className="relative flex h-full flex-col items-center pt-5">
-        <div className="mb-10">
-          <h1 className="mx-auto w-fit text-white rounded-lg px-7 py-2 text-center font-[family-name:var(--font-storm)] text-5xl">
-            sekcja o <span className="text-orange-400">czyms </span>tam
-          </h1>
-  
-          <div className="-mt-2 flex w-full justify-center">
-            <Image
-              src="/divider-white.webp"
-              alt="Section divider"
-              width={300}
-              height={200}
-              className="object-cover"
-            />
-          </div>
-          <p className="text-center mt-20 text-white   font-[family-name:var(--font-barlow)] text-4xl animate-bounce">
-            Czcionka do nagłówków nie posiada polskich znaków 😢
-          </p>
-        </div>
+      {images.map((image, index) => (
+        <motion.div
+          key={image}
+          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ 
+            opacity: index === currentImageIndex ? 1 : 0,
+            scale: index === currentImageIndex ? 1 : 1.1
+          }}
+          transition={{ duration: 1 }}
+        >
+          <Image
+            src={image}
+            alt={`Judo photo ${index + 1}`}
+            fill
+            className="object-cover "
+            priority={index === 0}
+          />
+        </motion.div>
+      ))}
+     <div className="absolute inset-0 bg-black/10" />
+      
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`w-4 h-4 rounded-full transition-all duration-300 ${
+              index === currentImageIndex ? 'bg-white w-6' : 'bg-white/50'
+            }`}
+            onClick={() => setCurrentImageIndex(index)}
+          />
+        ))}
       </div>
     </motion.section>
   );

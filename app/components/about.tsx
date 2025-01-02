@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const SvgTopLeft = () => (
   <svg
@@ -42,8 +43,8 @@ export default function About() {
         >
           <SvgTopLeft />
 
-          <h1 className="mb-4 font-[family-name:var(--font-storm)] text-4xl">
-            Czym jest <span className="text-orange-400">Judo </span>
+          <h1 className="mb-6 font-[family-name:var(--font-storm)] text-4xl ">
+            czym jest <span className="text-orange-400">JUDO</span>?
           </h1>
           <p className="font-[family-name:var(--font-barlow)] text-lg">
             Nazwę Judo można tłumaczyć jako &ldquo;drogę do zwinności&ldquo; lub &ldquo;drogę
@@ -79,7 +80,7 @@ export default function About() {
           className="flex w-1/3 h-fit mt-32 p-6 flex-col justify-center relative"
         >
           <SvgBottomRight />
-          <h1 className="mb-4 font-[family-name:var(--font-storm)] text-4xl">
+          <h1 className="mb-6 font-[family-name:var(--font-storm)] text-4xl md:text-5xl">
            <span className="text-orange-400">Jigoro</span> Kano
           </h1>
           <p className="font-[family-name:var(--font-barlow)] text-lg">
@@ -157,9 +158,19 @@ export default function About() {
             sport przygotowuje do życia codziennego, wychowuje i kształtuje.
             Pomaga odkryć i rozwijać własne możliwości.{" "}
           </p>
+          
         </motion.div>
 
+      </div>
+      <div className="w-full flex justify-center md:-mt-10">    
+      <Link
+          href="/o-nas"
+          className="font-[family-name:var(--font-barlow)] font-semibold uppercase px-10 py-2 bg-black rounded text-white border border-black hover:bg-white hover:text-black transition-all duration-300"
+        >
+          Dalej
+        </Link>
       </div>
     </div>
   );
 }
+

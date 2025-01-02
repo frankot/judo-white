@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Barlow } from "next/font/google";
 import Nav from "./components/nav";
-
+import Footer from "./components/footer";
 const barlow = Barlow({
   weight: ["100", "300", "400", "500", "700"],
   subsets: ["latin"],
@@ -11,7 +11,7 @@ const barlow = Barlow({
   variable: "--font-barlow",
 });
 const storm = localFont({
-  src: "./fonts/StormGust.ttf",
+  src: "./fonts/voxbox.ttf",
   variable: "--font-storm",
   weight: "100 900",
 });
@@ -47,6 +47,7 @@ export default function RootLayout({
       <body className={`antialiased ${storm.variable} ${barlow.variable}`}>
         <Nav /> 
         {children}
+        <Footer />
       </body>
     </html>
   );

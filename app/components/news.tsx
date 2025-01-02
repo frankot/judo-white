@@ -1,56 +1,9 @@
 import Title from "./UI/title";
-
-export interface NewsItem {
-  id: string;
-  title: string;
-  slug: string;
-  date: string;
-  shortDescription: string;
-  fullContent: {
-    html: string;
-  };
-  image: {
-    url: string;
-  };
-}
-
-const newsItems = [
-  {
-    id: 1,
-    title: "Sukces na Mistrzostwach Polski",
-    date: "2024-02-15",
-    image: "https://www.beemat.co.uk/cdn/shop/articles/Judo.jpg?v=1695986886",
-    description:
-      "Nasi zawodnicy zdobyli 3 złote medale podczas Mistrzostw Polski Juniorów w Judo. Gratulujemy wszystkim uczestnikom!",
-  },
-  {
-    id: 2,
-    title: "Nowy nabór do grup początkujących",
-    date: "2024-02-10",
-    image:
-      "https://images.unsplash.com/photo-1542937307-6eeb0267cbab?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8anVkb3xlbnwwfHwwfHx8MA%3D%3D",
-    description:
-      "Rozpoczynamy zapisy do grup początkujących dla dzieci w wieku 6-12 lat. Zajęcia startują od marca!",
-  },
-  {
-    id: 3,
-    title: "Obóz letni 2024",
-    date: "2024-02-05",
-    image:
-      "https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?q=80&w=2322&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    description:
-      "Zapraszamy na letni obóz judo w górach. W programie: treningi, integracja i mnóstwo dobrej zabawy.",
-  },
-  {
-    id: 4,
-    title: "Seminarium z Mistrzem",
-    date: "2024-01-30",
-    image:
-      "https://images.unsplash.com/photo-1602827113876-839bcf3ccb3a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fGp1ZG98ZW58MHx8MHx8fDA%3D",
-    description:
-      "W następnym miesiącu odbędzie się specjalne seminarium z udziałem mistrza olimpijskiego. Nie przegap tej wyjątkowej okazji!",
-  },
-];
+import { hygraphClient } from '../lib/graphql';
+import { GET_4_ARTICLES } from '../lib/queries';
+import { Article } from '../types/types';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const SvgSun = () => (
   <svg
@@ -82,35 +35,55 @@ const SvgSun = () => (
 );
 
 export default function News() {
-  return (
-    <div className="relative w-screen py-16">
-      <Title title="Aktualnosci" />
+  const [articles, setArticles] = useState<Article[]>([]);
 
-      <div className="mx-auto grid max-w-7xl  md:grid-cols-4 gap-8 px-6 lg:px-4">
-        {newsItems.map((item) => (
-          <div
-            key={item.id}
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        const data = await hygraphClient.request<{ articles: Article[] }>(GET_4_ARTICLES);
+        setArticles(data.articles);
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+      }
+    };
+
+    fetchArticles();
+  }, []);
+
+  return (
+    <div id="news" className="relative w-screen py-16 mt-14">
+      <Title title="Wydarzenia" />
+
+      <div className="mx-auto grid max-w-7xl sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 lg:px-4">
+        {articles.map((article) => (
+          <Link
+            href={`/aktualnosci/${article.slug}`}
+            key={article.id}
             className="relative flex flex-col overflow-hidden rounded-tl-xl shadow duration-500 hover:scale-105"
           >
             <div className="relative h-48">
               <img
-                src={item.image}
-                alt={item.title}
+                src={article.image.url}
+                alt={article.title}
                 className="h-full w-full object-cover [filter:saturate(75%)]"
               />
               <p className="absolute bottom-2 left-2 rounded bg-black/50 px-2 py-1 text-sm text-white">
-                {item.date}
+                {new Date(article.date).toLocaleDateString('pl-PL', {
+                  day: 'numeric',
+                  month: 'numeric', 
+                  year: 'numeric'
+                }).replace(/\./g, '/')}
               </p>
             </div>
             <div className="flex flex-1 flex-col bg-white p-6 backdrop-blur-sm">
               <h2 className="mb-2 font-[family-name:var(--font-barlow)] text-lg font-semibold uppercase">
-                {item.title}
+                {article.title}
               </h2>
               <p className="flex-1 font-[family-name:var(--font-barlow)] text-gray-700">
-                {item.description}
+                {article.shortDesc}
               </p>
             </div>
-            <button className="absolute bottom-2 right-2 flex items-center gap-2  font-[family-name:var(--font-barlow)] text-sm font-semibold uppercase ">
+            <div className="absolute bottom-2 right-2 flex items-center gap-2 font-[family-name:var(--font-barlow)] text-sm font-semibold uppercase">
               Dalej
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -126,18 +99,20 @@ export default function News() {
                   clipRule="evenodd"
                 />
               </svg>
-            </button>
+            </div>
             <div className="absolute -bottom-10 -right-32 opacity-5">
               <SvgSun />
             </div>
-          </div>
+          </Link>
         ))}
-             
       </div>
       <div className="w-full flex justify-center mt-10">
-        <button className="font-[family-name:var(--font-barlow)]   uppercase px-6 py-2 bg-black rounded text-white border border-black hover:bg-white hover:text-black transition-all duration-300">
+        <Link
+          href="/aktualnosci"
+          className="font-[family-name:var(--font-barlow)] font-semibold uppercase px-10 py-2 bg-black rounded text-white border border-black hover:bg-white hover:text-black transition-all duration-300"
+        >
           Więcej
-        </button>
+        </Link>
       </div>
     </div>
   );
