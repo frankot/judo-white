@@ -6,7 +6,7 @@ import kanji from "../../../public/kanji.png";
 import Link from "next/link";
 import { notFound } from 'next/navigation';
 
-export const revalidate = 10;
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const { articles } = await hygraphClient.request<{

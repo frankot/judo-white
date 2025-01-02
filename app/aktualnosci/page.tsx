@@ -33,7 +33,7 @@ const SvgSun = () => (
   </svg>
 );
 
-export const revalidate = 10; // Revalidate every hour
+export const revalidate = 60; // Revalidate every 10 minutes
 
 async function getArticles() {
   try {
