@@ -3,6 +3,7 @@ import { hygraphClient } from '../lib/graphql';
 import { GET_4_ARTICLES } from '../lib/queries';
 import { Article } from '../types/types';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const SvgSun = () => (
@@ -52,7 +53,7 @@ export default function News() {
 
   return (
     <div id="news" className="relative w-screen py-16 mt-14">
-      <Title title="Wydarzenia" />
+      <Title title="wydarzenia" />
 
       <div className="mx-auto grid max-w-7xl sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 lg:px-4">
         {articles.map((article) => (
@@ -62,10 +63,11 @@ export default function News() {
             className="relative flex flex-col overflow-hidden rounded-tl-xl shadow duration-500 hover:scale-105"
           >
             <div className="relative h-48">
-              <img
+              <Image
                 src={article.image.url}
                 alt={article.title}
-                className="h-full w-full object-cover [filter:saturate(75%)]"
+                fill
+                className="object-cover [filter:saturate(75%)]"
               />
               <p className="absolute bottom-2 left-2 rounded bg-black/50 px-2 py-1 text-sm text-white">
                 {new Date(article.date).toLocaleDateString('pl-PL', {

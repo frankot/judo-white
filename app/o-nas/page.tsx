@@ -128,7 +128,7 @@ export default function ONas() {
           >
             <SvgBottomRight />
             <h1 className="mb-6 font-[family-name:var(--font-storm)] text-4xl">
-              <span className="text-orange-400">Jigoro</span> Kano
+              <span className="text-orange-400">jigoro</span> kano
             </h1>
             <p className="font-[family-name:var(--font-barlow)] text-lg">
               Judo pochodzi z Japonii. Jego twórcą był Jigoro KANO (1860-1938).
@@ -224,7 +224,7 @@ export default function ONas() {
             transition={{ duration: 0.6 }}
             className="mb-16 text-center"
           >
-            <Title title="nasi MEDALISCI" />
+            <Title title="nasi medalisci" />
           </motion.div>
 
           <motion.div

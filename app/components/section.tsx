@@ -22,7 +22,7 @@ export default function Section() {
     }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [images.length]);
 
   return (
     <motion.section

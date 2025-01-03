@@ -3,6 +3,7 @@ import { GET_ALL_ARTICLES } from "../lib/queries";
 import { Article } from "../types/types";
 import Link from "next/link";
 import Title from "../components/UI/title";
+import Image from "next/image";
 
 const SvgSun = () => (
   <svg
@@ -33,7 +34,7 @@ const SvgSun = () => (
   </svg>
 );
 
-export const revalidate = 60; // Revalidate every 10 minutes
+export const revalidate = 60; 
 
 async function getArticles() {
   try {
@@ -67,10 +68,11 @@ export default async function Aktualnosci() {
               className="relative flex flex-col overflow-hidden rounded-tl-xl shadow duration-500 hover:scale-105"
             >
               <div className="relative h-48">
-                <img
+                <Image
                   src={article.image.url}
                   alt={article.title}
-                  className="h-full w-full object-cover [filter:saturate(75%)]"
+                  fill
+                  className="object-cover [filter:saturate(75%)]"
                 />
                 <p className="absolute bottom-2 left-2 rounded bg-black/50 px-2 py-1 text-sm text-white">
                   {new Date(article.date)

@@ -16,10 +16,10 @@ export default function Footer() {
       whileInView={{ y: 0, opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="w-full bg-black pb-12 text-white"
+      className="w-full bg-stone-900 pb-12 text-white"
     >
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-center">
-        <h1 className="mb-8 -translate-y-6 rounded-xl bg-black px-12 pt-7 font-[family-name:var(--font-storm)] text-4xl md:text-6xl">
+        <h1 className="mb-8 -translate-y-6 rounded-xl bg-stone-900 px-12 pt-7 font-[family-name:var(--font-storm)] text-4xl md:text-6xl">
           judo<span className="text-orange-400">DRAKO</span>
         </h1>
         <ul className="mb-6 flex flex-col gap-3 text-center font-[family-name:var(--font-barlow)] uppercase md:flex-row md:gap-8">

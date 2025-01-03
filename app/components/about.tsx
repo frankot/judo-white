@@ -81,7 +81,7 @@ export default function About() {
         >
           <SvgBottomRight />
           <h1 className="mb-6 font-[family-name:var(--font-storm)] text-4xl md:text-5xl">
-           <span className="text-orange-400">Jigoro</span> Kano
+           <span className="text-orange-400">jigoro</span> kano
           </h1>
           <p className="font-[family-name:var(--font-barlow)] text-lg">
             Judo pochodzi z Japonii. Jego twórcą był Jigoro KANO (1860-1938).
@@ -124,7 +124,7 @@ export default function About() {
         >
           <SvgBottomRight />
           <h1 className="mb-4 font-[family-name:var(--font-storm)] text-3xl">
-            Jigoro Kano
+            <span className="text-orange-400">jigoro</span> kano
           </h1>
           <p className="font-[family-name:var(--font-barlow)] text-base">
             Judo pochodzi z Japonii. Jego twórcą był Jigoro KANO (1860-1938).
@@ -146,7 +146,7 @@ export default function About() {
         >
           <SvgTopLeft />
           <h1 className="mb-4 font-[family-name:var(--font-storm)] text-3xl">
-            Czym jest Judo?
+            czym jest <span className="text-orange-400">JUDO</span>?
           </h1>
           <p className="font-[family-name:var(--font-barlow)] text-base">
             Nazwę Judo można tłumaczyć jako &ldquo;drogę do zwinności&ldquo; lub &ldquo;drogę
@@ -165,7 +165,7 @@ export default function About() {
       <div className="w-full flex justify-center md:-mt-10">    
       <Link
           href="/o-nas"
-          className="font-[family-name:var(--font-barlow)] font-semibold uppercase px-10 py-2 bg-black rounded text-white border border-black hover:bg-white hover:text-black transition-all duration-300"
+          className="font-[family-name:var(--font-barlow)] font-semibold uppercase px-10 py-2 bg-stone-900 rounded text-white border border-stone-900 hover:bg-white hover:text-stone-900 transition-all duration-300"
         >
           Dalej
         </Link>

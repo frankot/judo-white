@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { text: "Strona główna", href: "/" },
@@ -84,12 +85,11 @@ export default function Nav() {
     setTimeout(() => {
       const formElement = document.getElementById('form');
       if (formElement) {
-  
-        // Dispatch a custom event that the form will listen to
-        window.dispatchEvent(new CustomEvent('setFormType', { detail: type }));
+          window.dispatchEvent(new CustomEvent('setFormType', { detail: type }));
+          setIsZapisyOpen(false);
       }
     }, 100);
-    setIsZapisyOpen(false);
+   
   };
 
   return (
@@ -105,12 +105,14 @@ export default function Nav() {
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="fixed left-0 bottom-5 md:bottom-auto md:top-1/3 bg-white/30 backdrop-blur-md p-4 -translate-y-1/2 z-50 rounded-r-xl"
+          className="hidden fixed md:block left-0  top-1/3 bg-white/30 backdrop-blur-md p-4 -translate-y-1/2 z-50 rounded-r-xl"
         >
           <Link href="https://app.activenow.io/users/sign_in" target="_blank" rel="noopener noreferrer">
-            <img 
+            <Image 
               src="/activeNow.png" 
               alt="Active Now" 
+              width={128}
+              height={40}
               className="w-32 h-auto hover:scale-110 transition-transform duration-300"
             />
           </Link>
@@ -136,7 +138,7 @@ export default function Nav() {
           transition={{ duration: 0.7 }}
           className={`
             font-[family-name:var(--font-storm)] transition-all duration-700 whitespace-nowrap 
-            ${isScrolled ? 'text-5xl md:text-6xl text-black' : 'text-6xl md:text-9xl text-white'}
+            ${isScrolled ? 'text-[2.5rem] md:text-6xl text-stone-900' : 'text-[3.25rem] md:text-9xl text-white'}
           `}
         >
           judo<span className={`${isScrolled ? 'text-orange-400' : ''}`}>DRAKO</span>
@@ -152,7 +154,7 @@ export default function Nav() {
                     <div className="relative">
                       <button
                         onClick={() => setIsZapisyOpen(!isZapisyOpen)}
-                        className="flex items-center gap-1 cursor-pointer uppercase text-black"
+                        className="flex items-center gap-1 cursor-pointer uppercase text-stone-900"
                       >
                         {link.text}
                         <svg
@@ -173,7 +175,7 @@ export default function Nav() {
                           <button
                             key={dropIndex}
                             onClick={() => handleZapisyClick(dropdownItem.type)}
-                            className="block px-4 py-2 text-sm text-black hover:bg-gray-100/50 duration-300 w-full text-left"
+                            className="block px-4 py-2 text-sm text-stone-900 hover:bg-gray-100/50 duration-300 w-full text-left"
                           >
                             {dropdownItem.text}
                           </button>
@@ -183,7 +185,7 @@ export default function Nav() {
                   ) : (
                     <Link 
                       href={link.href}
-                      className="cursor-pointer uppercase text-black hover:-translate-y-[2px] duration-300"
+                      className="cursor-pointer uppercase text-stone-900 hover:-translate-y-[2px] duration-300"
                     >
                       {link.text}
                     </Link>
@@ -194,7 +196,7 @@ export default function Nav() {
 
             {/* Mobile Menu Button */}
             <button
-              className="absolute right-1 top-5 p-2 text-black md:hidden"
+              className="absolute right-1 top-6 p-2 text-stone-900 md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <svg
@@ -219,7 +221,7 @@ export default function Nav() {
               bg-white/90 font-[family-name:var(--font-barlow)]
               shadow-lg transition-all duration-500 ease-in-out md:hidden
               rounded-b-xl overflow-hidden
-              ${isMobileMenuOpen ? 'max-h-[500px] border-t border-black py-4' : 'max-h-0'}
+              ${isMobileMenuOpen ? 'max-h-[500px] border-t border-stone-900 py-4' : 'max-h-0'}
             `}>
               {navLinks.map((link, index) => (
                 <li key={index}>
@@ -227,7 +229,7 @@ export default function Nav() {
                     <>
                       <button
                         onClick={() => setIsZapisyOpen(!isZapisyOpen)}
-                        className="w-full flex items-center justify-center gap-1 py-3 uppercase text-black hover:text-gray-600 transition-colors"
+                        className="w-full flex items-center justify-center gap-1 py-3 uppercase text-stone-900 hover:text-gray-600 transition-colors"
                       >
                         {link.text}
                         <svg
@@ -247,23 +249,37 @@ export default function Nav() {
                           <button
                             key={dropIndex}
                             onClick={() => handleZapisyClick(dropdownItem.type)}
-                            className="block py-2 text-center text-sm text-black hover:bg-gray-100 w-full "
+                            className="block py-2 text-center text-sm text-stone-900 hover:bg-gray-100 w-full "
                           >
                             {dropdownItem.text}
                           </button>
                         ))}
+                        
                       </div>
                     </>
                   ) : (
                     <Link
                       href={link.href}
-                      className="block cursor-pointer py-3 text-center uppercase text-black hover:text-gray-600 transition-colors"
+                      className="block cursor-pointer py-3 text-center uppercase text-stone-900 hover:text-gray-600 transition-colors"
                     >
                       {link.text}
                     </Link>
+                    
                   )}
+                  
                 </li>
               ))}
+              <li className="flex justify-center pt-2 pr-4">
+                <Link href="https://app.activenow.io/users/sign_in" target="_blank" rel="noopener noreferrer">
+                  <Image 
+                    src="/activeNow.png" 
+                    alt="Active Now" 
+                    width={128}
+                    height={40}
+                    className="w-32 h-auto"
+                  />
+                </Link>
+              </li>
             </ul>
           </>
         )}

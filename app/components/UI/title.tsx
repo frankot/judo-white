@@ -10,7 +10,7 @@ interface SectionTitleProps {
 export default function Title({ 
   title, 
   className = "mb-10",
-  titleClassName = "mx-auto w-fit rounded-lg px-7 py-2 text-center font-[family-name:var(--font-storm)] text-5xl md:text-6xl",
+  titleClassName = "mx-auto w-fit rounded-lg px-7 py-2 text-center font-[family-name:var(--font-storm)] text-4xl md:text-6xl",
   dividerClassName = "object-cover w-[300px] md:w-[500px]"
 }: SectionTitleProps) {
   return (

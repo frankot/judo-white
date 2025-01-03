@@ -44,7 +44,7 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
-      <body className={`antialiased ${storm.variable} ${barlow.variable}`}>
+      <body className={`antialiased ${storm.variable} bg-stone-900 ${barlow.variable}`}>
         <Nav /> 
         {children}
         <Footer />

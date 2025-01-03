@@ -5,6 +5,7 @@ import { GET_ALL_SLUGS, GET_ARTICLE } from "../../lib/queries";
 import kanji from "../../../public/kanji.png";
 import Link from "next/link";
 import { notFound } from 'next/navigation';
+import Image from 'next/image';
 
 export const revalidate = 60;
 
@@ -75,16 +76,18 @@ export default async function ArticlePage({
     return (
       <main className="relative min-h-screen bg-white pt-10 md:pt-20 overflow-hidden font-[family-name:var(--font-barlow)]">
         <div className="pointer-events-none absolute -right-32 top-1/4 flex items-center justify-center opacity-5">
-          <img
-            src={kanji.src}
+          <Image
+            src={kanji}
             alt="Background kanji"
             className="h-[400px] w-[400px] md:h-[800px] md:w-[800px] object-contain"
           />
         </div>
         <article className="relative mx-auto max-w-4xl px-6 py-16">
-          <img
+          <Image
             src={article.image.url}
             alt={article.title}
+            width={1200}
+            height={400}
             className="h-[400px] w-full rounded-xl object-cover"
           />
           <div className="relative">
@@ -92,13 +95,13 @@ export default async function ArticlePage({
             <time className="mt-2 block text-gray-600">{formattedDate}</time>
             <Link
               href="/#news"
-              className="font-[family-name:var(--font-barlow)] text-sm md:text-base absolute right-0 top-2 md:top-1/2  font-semibold uppercase px-3 md:px-6 py-2 bg-black rounded text-white border border-black hover:bg-white hover:text-black transition-all duration-300"
+              className="font-[family-name:var(--font-barlow)] text-sm md:text-base absolute right-0 top-2 md:top-1/2  font-semibold uppercase px-3 md:px-6 py-2 bg-stone-900 rounded text-white border border-stone-900 hover:bg-white hover:text-stone-900 transition-all duration-300"
             >
               Wróć
             </Link>
           </div>
           <div className="flex mt-2 md:mt-0 w-full justify-start md:-translate-x-5">
-            <img
+            <Image
               src="/divider.webp"
               alt="Article divider"
               width={500}

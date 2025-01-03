@@ -82,7 +82,7 @@ export default function ContactForm() {
           transition={{ duration: 0.6 }}
           className="mb-16 -mt-32 overflow-visible bg-white rounded-t-xl text-center"
         >
-          <Title title="Zapisy" />
+          <Title title="zapisy" />
         </motion.div>
 
         <motion.form

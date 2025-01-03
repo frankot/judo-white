@@ -41,7 +41,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <Title title="Kontakt" />
+          <Title title="kontakt" />
         </motion.div>
 
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
