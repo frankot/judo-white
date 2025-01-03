@@ -133,17 +133,19 @@ export default function Nav() {
           transition: "top 0.7s ease-in-out"
         }}
       >
-        <motion.h1
-          initial={{ x: 1200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.7 }}
-          className={`
-            font-[family-name:var(--font-storm)] transition-all duration-700 whitespace-nowrap 
-            ${isScrolled ? 'text-[2.5rem] md:text-6xl text-stone-950' : 'text-[3.25rem] md:text-9xl text-white'}
-          `}
-        >
-          judo<span className={`${isScrolled ? 'text-orange-400' : ''}`}>DRAKO</span>
-        </motion.h1>
+        <Link href="/">
+          <motion.h1
+            initial={{ x: 1200, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            className={`
+              font-[family-name:var(--font-storm)] transition-all duration-700 whitespace-nowrap 
+              ${isScrolled ? 'text-[2.5rem] md:text-6xl text-stone-950' : 'text-[3.25rem] md:text-9xl text-white'}
+            `}
+          >
+            judo<span className={`${isScrolled ? 'text-orange-400' : ''}`}>DRAKO</span>
+          </motion.h1>
+        </Link>
 
         {isScrolled && (
           <>
