@@ -23,11 +23,16 @@ const navLinks = [
 
 export default function Nav() {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(pathname !== "/");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isZapisyOpen, setIsZapisyOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -92,6 +97,10 @@ export default function Nav() {
     }, 100);
    
   };
+
+  if (!isMounted) {
+    return null; // or return a placeholder/skeleton
+  }
 
   return (
     <div className="relative z-50 flex w-full justify-center scroll-smooth">
@@ -173,7 +182,12 @@ export default function Nav() {
                         absolute -left-5 top-full mt-2 w-48 bg-white/30 shadow-lg rounded-b-lg overflow-hidden
                         transition-all duration-300 origin-top backdrop-blur-lg
                         ${isZapisyOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}
-                      `}>
+                      `}
+                      style={{
+                        transform: 'translate3d(0,0,0)',
+                        backfaceVisibility: 'hidden',
+                        perspective: '1000px'
+                      }}>
                         {link.dropdown.map((dropdownItem, dropIndex) => (
                           <button
                             key={dropIndex}
