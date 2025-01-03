@@ -73,6 +73,7 @@ export default async function Aktualnosci() {
                   alt={article.title}
                   fill
                   className="object-cover [filter:saturate(75%)]"
+                  quality={20}
                 />
                 <p className="absolute bottom-2 left-2 rounded bg-black/50 px-2 py-1 text-sm text-white">
                   {new Date(article.date)
