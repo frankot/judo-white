@@ -95,7 +95,7 @@ export default async function ArticlePage({
             <time className="mt-2 block text-gray-600">{formattedDate}</time>
             <Link
               href="/#news"
-              className="font-[family-name:var(--font-barlow)] text-sm md:text-base absolute right-0 top-2 md:top-1/2  font-semibold uppercase px-3 md:px-6 py-2 bg-stone-900 rounded text-white border border-stone-900 hover:bg-white hover:text-stone-900 transition-all duration-300"
+              className="font-[family-name:var(--font-barlow)] text-sm md:text-base font-semibold uppercase px-3 md:px-6 py-2 bg-stone-950 rounded text-white border border-stone-950 hover:bg-white hover:text-stone-950 transition-all duration-300"
             >
               Wróć
             </Link>

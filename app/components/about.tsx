@@ -165,7 +165,7 @@ export default function About() {
       <div className="w-full flex justify-center md:-mt-10">    
       <Link
           href="/o-nas"
-          className="font-[family-name:var(--font-barlow)] font-semibold uppercase px-10 py-2 bg-stone-900 rounded text-white border border-stone-900 hover:bg-white hover:text-stone-900 transition-all duration-300"
+          className="font-[family-name:var(--font-barlow)] font-semibold uppercase px-10 py-2 bg-stone-950 rounded text-white border border-stone-950 hover:bg-white hover:text-stone-950 transition-all duration-300"
         >
           Dalej
         </Link>

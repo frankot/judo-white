@@ -212,7 +212,7 @@ export default function ContactForm() {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="rounded bg-black border border-black px-10 py-2 font-[family-name:var(--font-barlow)] font-semibold uppercase text-white transition-all duration-300 hover:bg-white hover:text-black"
+              className="rounded bg-stone-950 border border-black px-10 py-2 font-[family-name:var(--font-barlow)] font-semibold uppercase text-white transition-all duration-300 hover:bg-white hover:text-black"
             >
               Wyślij
             </button>

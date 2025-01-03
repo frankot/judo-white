@@ -112,7 +112,7 @@ export default function News() {
       <div className="w-full flex justify-center mt-10">
         <Link
           href="/aktualnosci"
-          className="font-[family-name:var(--font-barlow)] font-semibold uppercase px-10 py-2 bg-black rounded text-white border border-black hover:bg-white hover:text-black transition-all duration-300"
+          className="font-[family-name:var(--font-barlow)] font-semibold uppercase px-10 py-2 bg-stone-950 rounded text-white border border-stone-950 hover:bg-white hover:text-black transition-all duration-300"
         >
           Więcej
         </Link>

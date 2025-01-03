@@ -81,6 +81,7 @@ export default function Nav() {
 
   const handleZapisyClick = (type: string) => {
     router.push('/form');
+    setIsMobileMenuOpen(false);
     // Use a small delay to ensure the form is in view before setting type
     setTimeout(() => {
       const formElement = document.getElementById('form');
@@ -138,7 +139,7 @@ export default function Nav() {
           transition={{ duration: 0.7 }}
           className={`
             font-[family-name:var(--font-storm)] transition-all duration-700 whitespace-nowrap 
-            ${isScrolled ? 'text-[2.5rem] md:text-6xl text-stone-900' : 'text-[3.25rem] md:text-9xl text-white'}
+            ${isScrolled ? 'text-[2.5rem] md:text-6xl text-stone-950' : 'text-[3.25rem] md:text-9xl text-white'}
           `}
         >
           judo<span className={`${isScrolled ? 'text-orange-400' : ''}`}>DRAKO</span>
@@ -154,7 +155,7 @@ export default function Nav() {
                     <div className="relative">
                       <button
                         onClick={() => setIsZapisyOpen(!isZapisyOpen)}
-                        className="flex items-center gap-1 cursor-pointer uppercase text-stone-900"
+                        className="flex items-center gap-1 cursor-pointer uppercase text-stone-950"
                       >
                         {link.text}
                         <svg
@@ -175,7 +176,7 @@ export default function Nav() {
                           <button
                             key={dropIndex}
                             onClick={() => handleZapisyClick(dropdownItem.type)}
-                            className="block px-4 py-2 text-sm text-stone-900 hover:bg-gray-100/50 duration-300 w-full text-left"
+                            className="block px-4 py-2 text-sm text-stone-950 hover:bg-gray-100/50 duration-300 w-full text-left"
                           >
                             {dropdownItem.text}
                           </button>
@@ -185,7 +186,7 @@ export default function Nav() {
                   ) : (
                     <Link 
                       href={link.href}
-                      className="cursor-pointer uppercase text-stone-900 hover:-translate-y-[2px] duration-300"
+                      className="cursor-pointer uppercase text-stone-950 hover:-translate-y-[2px] duration-300"
                     >
                       {link.text}
                     </Link>
@@ -196,7 +197,7 @@ export default function Nav() {
 
             {/* Mobile Menu Button */}
             <button
-              className="absolute right-1 top-6 p-2 text-stone-900 md:hidden"
+              className="absolute right-0 top-6 p-2 text-stone-950 md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               <svg
@@ -221,7 +222,7 @@ export default function Nav() {
               bg-white/90 font-[family-name:var(--font-barlow)]
               shadow-lg transition-all duration-500 ease-in-out md:hidden
               rounded-b-xl overflow-hidden
-              ${isMobileMenuOpen ? 'max-h-[500px] border-t border-stone-900 py-4' : 'max-h-0'}
+              ${isMobileMenuOpen ? 'max-h-[500px] border-t border-stone-950 py-4' : 'max-h-0'}
             `}>
               {navLinks.map((link, index) => (
                 <li key={index}>
@@ -229,7 +230,7 @@ export default function Nav() {
                     <>
                       <button
                         onClick={() => setIsZapisyOpen(!isZapisyOpen)}
-                        className="w-full flex items-center justify-center gap-1 py-3 uppercase text-stone-900 hover:text-gray-600 transition-colors"
+                        className="w-full flex items-center justify-center gap-1 py-3 uppercase text-stone-950 hover:text-gray-600 transition-colors"
                       >
                         {link.text}
                         <svg
@@ -249,7 +250,7 @@ export default function Nav() {
                           <button
                             key={dropIndex}
                             onClick={() => handleZapisyClick(dropdownItem.type)}
-                            className="block py-2 text-center text-sm text-stone-900 hover:bg-gray-100 w-full "
+                            className="block py-2 text-center text-sm text-stone-950 hover:bg-gray-100 w-full "
                           >
                             {dropdownItem.text}
                           </button>
@@ -260,7 +261,8 @@ export default function Nav() {
                   ) : (
                     <Link
                       href={link.href}
-                      className="block cursor-pointer py-3 text-center uppercase text-stone-900 hover:text-gray-600 transition-colors"
+                      className="block cursor-pointer py-3 text-center uppercase text-stone-950 hover:text-gray-600 transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {link.text}
                     </Link>
