@@ -114,7 +114,7 @@ export default function Nav() {
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="fixed left-0 top-1/3 z-50 hidden -translate-y-1/2 rounded-r-xl bg-white/30 p-4 backdrop-blur-md md:flex flex-col items-center justify-center"
+          className="fixed -left-1 top-1/3 z-50 hidden -translate-y-1/2 rounded-r-xl bg-white/30 p-4 backdrop-blur-md md:flex flex-col items-center justify-center shadow-lg"
         >
           {/* <p className="mb-2 font-[family-name:var(--font-barlow)] font-[500]">Dla Rodzica</p> */}
           <Link

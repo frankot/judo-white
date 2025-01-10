@@ -103,7 +103,16 @@ export default function MedalistPage({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <main className="min-h-screen bg-white pt-32">
+    <main className="relative min-h-screen bg-white pt-32 overflow-hidden">
+      <div className="pointer-events-none absolute -right-32 top-1/4 flex items-center justify-center opacity-5">
+        <Image
+          src="/kanji.png"
+          alt="Background kanji"
+          width={800}
+          height={800}
+          className="h-[400px] w-[400px] md:h-[800px] md:w-[800px] object-contain"
+        />
+      </div>
       <div className="mx-auto max-w-4xl px-6">
         <div className="relative mb-8">
           <Link
