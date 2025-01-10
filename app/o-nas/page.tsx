@@ -3,6 +3,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Title from "../components/UI/title";
 import Section from "../components/section";
+import Link from "next/link";
+
 const SvgTopLeft = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -15,6 +17,7 @@ const SvgTopLeft = () => (
     />
   </svg>
 );
+
 const SvgSun = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -69,12 +72,42 @@ const benefits = [
 ];
 
 const medalisci = [
-  ["/medalisci/medal.jpg", "Maciej Grzyb"],
-  ["/medalisci/medal2.jpg", "Jan Kowalski"], 
-  ["/medalisci/medal3.jpg", "Anna Nowak"],
-  ["/medalisci/medal4.jpg", "Piotr Wiśniewski"],
-  ["/medalisci/medal2.jpg", "Zofia Lewandowska"],
-  ["/medalisci/medal.jpg", "Tomasz Wójcik"],
+  [
+    "/medalisci/medal.jpg",
+    "Maciej Grzyb",
+    "maciej-grzyb",
+    "Wielokrotny medalista Mistrzostw Polski, reprezentant kraju w zawodach międzynarodowych. Specjalizuje się w kategorii -73kg."
+  ],
+  [
+    "/medalisci/medal2.jpg",
+    "Jan Kowalski",
+    "jan-kowalski",
+    "Złoty medalista Mistrzostw Europy Juniorów, dwukrotny Mistrz Polski w kategorii -66kg."
+  ],
+  [
+    "/medalisci/medal3.jpg",
+    "Anna Nowak",
+    "anna-nowak",
+    "Brązowa medalistka Mistrzostw Świata Juniorów, trzykrotna Mistrzyni Polski w kategorii -57kg."
+  ],
+  [
+    "/medalisci/medal4.jpg",
+    "Piotr Wiśniewski",
+    "piotr-wisniewski",
+    "Reprezentant kraju na zawodach międzynarodowych, złoty medalista Pucharu Europy w kategorii -81kg."
+  ],
+  [
+    "/medalisci/medal2.jpg",
+    "Zofia Lewandowska",
+    "zofia-lewandowska",
+    "Mistrzyni Polski Seniorów, srebrna medalistka Pucharu Świata w kategorii -63kg."
+  ],
+  [
+    "/medalisci/medal.jpg",
+    "Tomasz Wójcik",
+    "tomasz-wojcik",
+    "Wielokrotny medalista zawodów krajowych, reprezentant Polski w kategorii -90kg."
+  ],
 ];
 
 export default function ONas() {
@@ -234,25 +267,27 @@ export default function ONas() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            {medalisci.map(([image, name], index) => (
+            {medalisci.map(([image, name, slug], index) => (
               <div
                 key={index}
-                className="relative overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:shadow-lg"
+                className="relative overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
-                <div className="relative h-96">
-                  <Image
-                    src={image}
-                    alt={name}
-                    width={200}
-                    height={400}
-                    className="h-full w-full object-top object-cover rounded-lg"
-                  />
-                  <div className="absolute bottom-0 left-0 right-0 bg-white/70 backdrop-blur-sm p-3">
-                    <h3 className="text-center font-[family-name:var(--font-barlow)] text-xl">
-                      {name}
-                    </h3>
+                <Link href={`/o-nas/${slug}`} className="block">
+                  <div className="relative h-96">
+                    <Image
+                      src={image}
+                      alt={name}
+                      width={400}
+                      height={600}
+                      className="h-full w-full object-top object-cover rounded-lg"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-black/50 backdrop-blur-sm p-4">
+                      <h3 className="text-center font-[family-name:var(--font-barlow)] text-xl text-white">
+                        {name}
+                      </h3>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </motion.div>

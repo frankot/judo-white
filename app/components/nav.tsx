@@ -8,17 +8,17 @@ import Image from "next/image";
 const navLinks = [
   { text: "Strona główna", href: "/" },
   { text: "O nas", href: "/o-nas" },
-  { 
+  {
     text: "Zapisy",
     href: "/form",
     dropdown: [
       { text: "Zgłoszenie członkowskie", type: "membership" },
       { text: "Obozy / Półkolonie", type: "camps" },
-      { text: "Wydarzenia klubowe", type: "events" }
-    ]
+      { text: "Wydarzenia klubowe", type: "events" },
+    ],
   },
   { text: "Wydarzenia", href: "/aktualnosci" },
-  { text: "Kontakt", href: "/#kontakt" }
+  { text: "Kontakt", href: "/#kontakt" },
 ];
 
 export default function Nav() {
@@ -45,7 +45,7 @@ export default function Nav() {
         }
       }
     };
-    
+
     // Set initial scroll state
     if (pathname === "/") {
       handleScroll();
@@ -54,7 +54,7 @@ export default function Nav() {
     }
 
     window.addEventListener("scroll", handleScroll);
-    
+
     const handleClickOutside = (event: MouseEvent) => {
       const nav = document.querySelector("nav");
       if (nav && !nav.contains(event.target as Node)) {
@@ -64,7 +64,7 @@ export default function Nav() {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("mousedown", handleClickOutside);
@@ -74,28 +74,27 @@ export default function Nav() {
   // Effect to handle body scroll lock
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isMobileMenuOpen]);
 
   const handleZapisyClick = (type: string) => {
-    router.push('/form');
+    router.push("/form");
     setIsMobileMenuOpen(false);
     // Use a small delay to ensure the form is in view before setting type
     setTimeout(() => {
-      const formElement = document.getElementById('form');
+      const formElement = document.getElementById("form");
       if (formElement) {
-          window.dispatchEvent(new CustomEvent('setFormType', { detail: type }));
-          setIsZapisyOpen(false);
+        window.dispatchEvent(new CustomEvent("setFormType", { detail: type }));
+        setIsZapisyOpen(false);
       }
     }, 100);
-   
   };
 
   if (!isMounted) {
@@ -115,31 +114,30 @@ export default function Nav() {
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="hidden fixed md:block left-0  top-1/3 bg-white/30 backdrop-blur-md p-4 -translate-y-1/2 z-50 rounded-r-xl"
+          className="fixed left-0 top-1/3 z-50 hidden -translate-y-1/2 rounded-r-xl bg-white/30 p-4 backdrop-blur-md md:flex flex-col items-center justify-center"
         >
-          <Link href="https://app.activenow.io/users/sign_in" target="_blank" rel="noopener noreferrer">
-            <Image 
-              src="/activeNow.png" 
-              alt="Active Now" 
+          {/* <p className="mb-2 font-[family-name:var(--font-barlow)] font-[500]">Dla Rodzica</p> */}
+          <Link
+            href="https://app.activenow.io/users/sign_in"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/activeNow.png"
+              alt="Active Now"
               width={128}
               height={40}
-              className="w-32 h-auto hover:scale-110 transition-transform duration-300"
+              className="h-auto w-32 transition-transform duration-300 hover:scale-110"
             />
           </Link>
         </motion.div>
       )}
 
       <nav
-        className={`
-          fixed flex w-[90%] sm:w-[60%] xl:w-[40%] 
-          flex-col items-center justify-center
-          transition-all duration-700 ease-in-out
-          ${isScrolled ? 'bg-white/30 backdrop-blur-md shadow-lg py-4 md:py-0' : 'bg-transparent'}
-          ${isMobileMenuOpen ? 'rounded-b-none' : 'rounded-b-xl'}
-        `}
+        className={`fixed flex w-[90%] flex-col items-center justify-center transition-all duration-700 ease-in-out sm:w-[60%] xl:w-[40%] ${isScrolled ? "bg-white/30 py-4 shadow-lg backdrop-blur-md md:py-0" : "bg-transparent"} ${isMobileMenuOpen ? "rounded-b-none" : "rounded-b-xl"} `}
         style={{
           top: isScrolled ? "0" : "33vh",
-          transition: "top 0.7s ease-in-out"
+          transition: "top 0.7s ease-in-out",
         }}
       >
         <Link href="/">
@@ -147,47 +145,50 @@ export default function Nav() {
             initial={{ x: 1200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.7 }}
-            className={`
-              font-[family-name:var(--font-storm)] transition-all duration-700 whitespace-nowrap 
-              ${isScrolled ? 'text-[2.5rem] md:text-6xl text-stone-950' : 'text-[3.25rem] md:text-9xl text-white'}
-            `}
+            className={`whitespace-nowrap font-[family-name:var(--font-storm)] transition-all duration-700 ${isScrolled ? "text-[2.5rem] text-stone-950 md:text-6xl" : "text-[3.25rem] text-white md:text-9xl"} `}
           >
-            judo<span className={`${isScrolled ? 'text-orange-400' : ''}`}>DRAKO</span>
+            judo
+            <span className={`${isScrolled ? "text-orange-400" : ""}`}>
+              DRAKO
+            </span>
           </motion.h1>
         </Link>
 
         {isScrolled && (
           <>
             {/* Desktop Menu */}
-            <ul className="bottom-2 my-2 hidden gap-8 md:flex font-[family-name:var(--font-barlow)] font-[300]">
+            <ul className="bottom-2 my-2 hidden gap-8 font-[family-name:var(--font-barlow)] font-[300] md:flex">
               {navLinks.map((link, index) => (
-                <li key={index} className="relative hover:-translate-y-[2px] duration-300">
+                <li
+                  key={index}
+                  className="relative duration-300 hover:-translate-y-[2px]"
+                >
                   {link.dropdown ? (
                     <div className="relative">
                       <button
                         onClick={() => setIsZapisyOpen(!isZapisyOpen)}
-                        className="flex items-center gap-1 cursor-pointer uppercase text-stone-950"
+                        className="flex cursor-pointer items-center gap-1 uppercase text-stone-950"
                       >
                         {link.text}
                         <svg
-                          className={`w-4 h-4 transition-transform duration-300 ${isZapisyOpen ? 'rotate-180' : ''}`}
+                          className={`h-4 w-4 transition-transform duration-300 ${isZapisyOpen ? "rotate-180" : ""}`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 9l-7 7-7-7" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1}
+                            d="M19 9l-7 7-7-7"
+                          />
                         </svg>
                       </button>
                       <div className={`
                         absolute -left-5 top-full mt-2 w-48 bg-white/30 shadow-lg rounded-b-lg overflow-hidden
                         transition-all duration-300 origin-top backdrop-blur-lg
                         ${isZapisyOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}
-                      `}
-                      style={{
-                        transform: 'translate3d(0,0,0)',
-                        backfaceVisibility: 'hidden',
-                        perspective: '1000px'
-                      }}>
+                      `}>
                         {link.dropdown.map((dropdownItem, dropIndex) => (
                           <button
                             key={dropIndex}
@@ -200,9 +201,9 @@ export default function Nav() {
                       </div>
                     </div>
                   ) : (
-                    <Link 
+                    <Link
                       href={link.href}
-                      className="cursor-pointer uppercase text-stone-950 hover:-translate-y-[2px] duration-300"
+                      className="cursor-pointer uppercase text-stone-950 duration-300 hover:-translate-y-[2px]"
                     >
                       {link.text}
                     </Link>
@@ -227,74 +228,79 @@ export default function Nav() {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"}
+                  d={
+                    isMobileMenuOpen
+                      ? "M6 18L18 6M6 6l12 12"
+                      : "M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
+                  }
                 />
               </svg>
             </button>
 
             {/* Mobile Menu */}
-            <ul className={`
-              absolute left-0 top-full w-full
-              bg-white/90 font-[family-name:var(--font-barlow)]
-              shadow-lg transition-all duration-500 ease-in-out md:hidden
-              rounded-b-xl overflow-hidden
-              ${isMobileMenuOpen ? 'max-h-[500px] border-t border-stone-950 py-4' : 'max-h-0'}
-            `}>
+            <ul
+              className={`absolute left-0 top-full w-full overflow-hidden rounded-b-xl bg-white/90 font-[family-name:var(--font-barlow)] shadow-lg transition-all duration-500 ease-in-out md:hidden ${isMobileMenuOpen ? "max-h-[500px] border-t border-stone-950 py-4" : "max-h-0"} `}
+            >
               {navLinks.map((link, index) => (
                 <li key={index}>
                   {link.dropdown ? (
                     <>
                       <button
                         onClick={() => setIsZapisyOpen(!isZapisyOpen)}
-                        className="w-full flex items-center justify-center gap-1 py-3 uppercase text-stone-950 hover:text-gray-600 transition-colors"
+                        className="flex w-full items-center justify-center gap-1 py-3 uppercase text-stone-950 transition-colors hover:text-gray-600"
                       >
                         {link.text}
                         <svg
-                          className={`w-4 h-4 transition-transform duration-300 ${isZapisyOpen ? 'rotate-180' : ''}`}
+                          className={`h-4 w-4 transition-transform duration-300 ${isZapisyOpen ? "rotate-180" : ""}`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
                         </svg>
                       </button>
-                      <div className={`
-                       overflow-hidden transition-all duration-300
-                        ${isZapisyOpen ? 'max-h-48' : 'max-h-0'}
-                      `}>
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ${isZapisyOpen ? "max-h-48" : "max-h-0"} `}
+                      >
                         {link.dropdown.map((dropdownItem, dropIndex) => (
                           <button
                             key={dropIndex}
                             onClick={() => handleZapisyClick(dropdownItem.type)}
-                            className="block py-2 text-center text-sm text-stone-950 hover:bg-gray-100 w-full "
+                            className="block w-full py-2 text-center text-sm text-stone-950 hover:bg-gray-100"
                           >
                             {dropdownItem.text}
                           </button>
                         ))}
-                        
                       </div>
                     </>
                   ) : (
                     <Link
                       href={link.href}
-                      className="block cursor-pointer py-3 text-center uppercase text-stone-950 hover:text-gray-600 transition-colors"
+                      className="block cursor-pointer py-3 text-center uppercase text-stone-950 transition-colors hover:text-gray-600"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {link.text}
                     </Link>
-                    
                   )}
-                  
                 </li>
               ))}
-              <li className="flex justify-center pt-2 pr-4">
-                <Link href="https://app.activenow.io/users/sign_in" target="_blank" rel="noopener noreferrer">
-                  <Image 
-                    src="/activeNow.png" 
-                    alt="Active Now" 
+              <li className="flex justify-center pr-4 pt-2">
+                <Link
+                  href="https://app.activenow.io/users/sign_in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src="/activeNow.png"
+                    alt="Active Now"
                     width={128}
                     height={40}
-                    className="w-32 h-auto"
+                    className="h-auto w-32"
                   />
                 </Link>
               </li>
