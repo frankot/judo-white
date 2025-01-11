@@ -185,8 +185,8 @@ export default function Nav() {
                         </svg>
                       </button>
                       <div className={`
-                        absolute -left-5 top-full mt-2 w-48 bg-white/30 shadow-lg rounded-b-lg overflow-hidden
-                        transition-all duration-300 origin-top backdrop-blur-lg
+                        absolute -left-5 top-full mt-2 w-48 bg-white border-t shadow-lg rounded-b-lg overflow-hidden
+                        transition-all duration-300 origin-top 
                         ${isZapisyOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}
                       `}>
                         {link.dropdown.map((dropdownItem, dropIndex) => (
