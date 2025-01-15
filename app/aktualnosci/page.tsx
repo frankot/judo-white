@@ -46,6 +46,8 @@ async function getArticles() {
   }
 }
 
+
+
 export default async function Aktualnosci() {
   const articles = await getArticles();
 

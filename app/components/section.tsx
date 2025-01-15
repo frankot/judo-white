@@ -9,9 +9,9 @@ export default function Section() {
   const images = [
     "https://images.unsplash.com/photo-1585537884613-1a9bcd024983?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGp1ZG98ZW58MHx8MHx8fDA%3D",
     "https://images.unsplash.com/photo-1515025617920-e1e674b5033c?q=80&w=3012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
-    "https://images.unsplash.com/photo-1542937307-6eeb0267cbab?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8anVkb3xlbnwwfHwwfHx8MA%3D%3D",
+   "https://images.unsplash.com/photo-1602827115160-a9e732f05533?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8anVkb3xlbnwwfHwwfHx8MA%3D%3D",
     "https://images.unsplash.com/photo-1542937307-e90d0cc07237?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D",
-    "https://images.unsplash.com/photo-1581392805606-7b7defe63218?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGp1ZG98ZW58MHx8MHx8fDA%3D"
+"https://images.unsplash.com/photo-1599677100542-907e96e98c09?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   ];
 
   useEffect(() => {

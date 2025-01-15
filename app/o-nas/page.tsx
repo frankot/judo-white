@@ -3,7 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Title from "../components/UI/title";
 import Section from "../components/section";
-import Link from "next/link";
+
 
 const SvgTopLeft = () => (
   <svg
@@ -71,44 +71,44 @@ const benefits = [
   "Judo jest sportem, który można uprawiać w różnym wieku, co czyni go dostępnym dla różnych grup wiekowych.",
 ];
 
-const medalisci = [
-  [
-    "/medalisci/medal.jpg",
-    "Maciej Grzyb",
-    "maciej-grzyb",
-    "Wielokrotny medalista Mistrzostw Polski, reprezentant kraju w zawodach międzynarodowych. Specjalizuje się w kategorii -73kg."
-  ],
-  [
-    "/medalisci/medal2.jpg",
-    "Jan Kowalski",
-    "jan-kowalski",
-    "Złoty medalista Mistrzostw Europy Juniorów, dwukrotny Mistrz Polski w kategorii -66kg."
-  ],
-  [
-    "/medalisci/medal3.jpg",
-    "Anna Nowak",
-    "anna-nowak",
-    "Brązowa medalistka Mistrzostw Świata Juniorów, trzykrotna Mistrzyni Polski w kategorii -57kg."
-  ],
-  [
-    "/medalisci/medal4.jpg",
-    "Piotr Wiśniewski",
-    "piotr-wisniewski",
-    "Reprezentant kraju na zawodach międzynarodowych, złoty medalista Pucharu Europy w kategorii -81kg."
-  ],
-  [
-    "/medalisci/medal2.jpg",
-    "Zofia Lewandowska",
-    "zofia-lewandowska",
-    "Mistrzyni Polski Seniorów, srebrna medalistka Pucharu Świata w kategorii -63kg."
-  ],
-  [
-    "/medalisci/medal.jpg",
-    "Tomasz Wójcik",
-    "tomasz-wojcik",
-    "Wielokrotny medalista zawodów krajowych, reprezentant Polski w kategorii -90kg."
-  ],
-];
+// const medalisci = [
+//   [
+//     "/medalisci/medal.jpg",
+//     "Maciej Grzyb",
+//     "maciej-grzyb",
+//     "Wielokrotny medalista Mistrzostw Polski, reprezentant kraju w zawodach międzynarodowych. Specjalizuje się w kategorii -73kg."
+//   ],
+//   [
+//     "/medalisci/medal2.jpg",
+//     "Jan Kowalski",
+//     "jan-kowalski",
+//     "Złoty medalista Mistrzostw Europy Juniorów, dwukrotny Mistrz Polski w kategorii -66kg."
+//   ],
+//   [
+//     "/medalisci/medal3.jpg",
+//     "Anna Nowak",
+//     "anna-nowak",
+//     "Brązowa medalistka Mistrzostw Świata Juniorów, trzykrotna Mistrzyni Polski w kategorii -57kg."
+//   ],
+//   [
+//     "/medalisci/medal4.jpg",
+//     "Piotr Wiśniewski",
+//     "piotr-wisniewski",
+//     "Reprezentant kraju na zawodach międzynarodowych, złoty medalista Pucharu Europy w kategorii -81kg."
+//   ],
+//   [
+//     "/medalisci/medal2.jpg",
+//     "Zofia Lewandowska",
+//     "zofia-lewandowska",
+//     "Mistrzyni Polski Seniorów, srebrna medalistka Pucharu Świata w kategorii -63kg."
+//   ],
+//   [
+//     "/medalisci/medal.jpg",
+//     "Tomasz Wójcik",
+//     "tomasz-wojcik",
+//     "Wielokrotny medalista zawodów krajowych, reprezentant Polski w kategorii -90kg."
+//   ],
+// ];
 
 export default function ONas() {
   return (
@@ -260,7 +260,7 @@ export default function ONas() {
             <Title title="nasi medalisci" />
           </motion.div>
 
-          <motion.div
+          {/* <motion.div
             className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 md:mx-20"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -290,6 +290,15 @@ export default function ONas() {
                 </Link>
               </div>
             ))}
+          </motion.div> */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center font-[family-name:var(--font-barlow)] text-xl text-gray-600 italic"
+          >
+            Trwają prace - już w krótce zaprezentujemy naszych Medalistów
           </motion.div>
         </div>
       </div>

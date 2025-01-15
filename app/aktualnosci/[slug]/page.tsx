@@ -7,7 +7,7 @@ import Link from "next/link";
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 
-export const revalidate = 60;
+export const revalidate = 10;
 
 export async function generateStaticParams() {
   const { articles } = await hygraphClient.request<{
