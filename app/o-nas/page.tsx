@@ -298,7 +298,7 @@ export default function ONas() {
             transition={{ duration: 0.6 }}
             className="text-center font-[family-name:var(--font-barlow)] text-xl text-gray-600 italic"
           >
-            Trwają prace - już w krótce zaprezentujemy naszych Medalistów
+            Trwają prace - już wkrótce zaprezentujemy naszych medalistów
           </motion.div>
         </div>
       </div>

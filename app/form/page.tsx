@@ -9,7 +9,7 @@ type FormType = "membership" | "camps" | "events";
 const formTypes = [
   { id: "membership", label: "Zgłoszenie członkowskie" },
   { id: "camps", label: "Obozy / półkolonie" },
-  { id: "events", label: "Wydarzenia klubowe" },
+  // { id: "events", label: "Wydarzenia klubowe" },
 ] as const;
 
 const SvgSun = () => (

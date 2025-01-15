@@ -1,6 +1,10 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
 
+if (!process.env.RESEND_API_KEY) {
+  throw new Error('RESEND_API_KEY is not defined in environment variables');
+}
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
@@ -16,7 +20,7 @@ export async function POST(req: Request) {
 
     const data = await resend.emails.send({
       from: "JudoDrako <onboarding@resend.dev>",
-      to: ["frankiantki@gmail.com"], // Replace with your email
+      to: ["frankiantki@gmail.com"],
       subject: `${formTypeLabels[formType as keyof typeof formTypeLabels]} - ${firstName} ${lastName}`,
       html: `
         <h2>Nowe zgłoszenie</h2>
@@ -32,6 +36,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(data);
   } catch (error) {
-    return NextResponse.json({ error });
+    console.error('Email sending error:', error);
+    return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
   }
 }
