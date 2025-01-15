@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Title from "../components/UI/title";
+import SuccessMessage from "../components/UI/successMessage";
 
 type FormType = "membership" | "camps" | "events";
 
@@ -43,6 +44,7 @@ const SvgSun = () => (
 
 export default function ContactForm() {
   const [formType, setFormType] = useState<FormType>("membership");
+  const [showSuccess, setShowSuccess] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -66,11 +68,45 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log({ formType, ...formData });
+    
+    try {
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType,
+          ...formData,
+        }),
+      });
+
+      if (response.ok) {
+        setFormData({
+          firstName: "",
+          lastName: "",
+          phone: "",
+          email: "",
+          message: "",
+        });
+        
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 5000);
+      } else {
+        throw new Error('Failed to send email');
+      }
+    } catch (error) {
+      console.error('Error sending form:', error);
+      alert('Wystąpił błąd podczas wysyłania formularza. Spróbuj ponownie później.');
+    }
   };
+
   return (
     <div id="form" className="w-screen bg-white py-20 mt-44 relative">
+      <SuccessMessage 
+        show={showSuccess} 
+        onClose={() => setShowSuccess(false)} 
+      />
       <div className="absolute  flex -bottom-32  right-0 opacity-5 pointer-events-none">
         <SvgSun />
       </div>
