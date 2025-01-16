@@ -20,7 +20,7 @@ export async function POST(req: Request) {
 
     const data = await resend.emails.send({
       from: "JudoDrako <onboarding@resend.dev>",
-      to: ["frankiantki@gmail.com"],
+      to: ["piotr@strus.net.pl"],
       subject: `${formTypeLabels[formType as keyof typeof formTypeLabels]} - ${firstName} ${lastName}`,
       html: `
         <h2>Nowe zgłoszenie</h2>
