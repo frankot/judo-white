@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Title from "../components/UI/title";
 import SuccessMessage from "../components/UI/successMessage";
+import { submitForm } from "../utils/submitForm";
 
 type FormType = "membership" | "camps" | "events";
 
@@ -70,18 +71,12 @@ export default function ContactForm() {
     e.preventDefault();
     
     try {
-      const response = await fetch('/api/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          formType,
-          ...formData,
-        }),
+      const result = await submitForm({
+        formType,
+        ...formData,
       });
 
-      if (response.ok) {
+      if (result.success) {
         setFormData({
           firstName: "",
           lastName: "",
@@ -93,7 +88,7 @@ export default function ContactForm() {
         setShowSuccess(true);
         setTimeout(() => setShowSuccess(false), 5000);
       } else {
-        throw new Error('Failed to send email');
+        alert(result.message);
       }
     } catch (error) {
       console.error('Error sending form:', error);
