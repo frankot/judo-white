@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Title from "../components/UI/title";
 import SuccessMessage from "../components/UI/successMessage";
 import { submitForm } from "../utils/submitForm";
+import emailjs from "@emailjs/browser";
 
 type FormType = "membership" | "camps" | "events";
 
@@ -53,6 +54,10 @@ export default function ContactForm() {
     email: "",
     message: "",
   });
+
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!);
+  }, []);
 
   // Add event listener for form type changes
   useEffect(() => {
