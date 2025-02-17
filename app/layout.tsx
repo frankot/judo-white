@@ -4,6 +4,7 @@ import "./globals.css";
 import { Barlow } from "next/font/google";
 import Nav from "./components/nav";
 import Footer from "./components/footer";
+import CookieBanner from "./components/CookieBanner";
 const barlow = Barlow({
   weight: ["100", "300", "400", "500", "700"],
   subsets: ["latin"],
@@ -47,6 +48,8 @@ export default function RootLayout({
       <body className={`antialiased ${storm.variable} bg-stone-950 text-stone-950  ${barlow.variable}`}>
         <Nav /> 
         {children}
+        <CookieBanner />
+
         <Footer />
       </body>
     </html>

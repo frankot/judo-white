@@ -86,7 +86,7 @@ export default function PrivacyPolicy() {
               </ol>
             </section>
 
-            <section>
+            <section id="cookies">
               <h2 className="mb-4 text-xl font-bold">VIII. Pliki cookies</h2>
               <ol className="list-decimal space-y-2 pl-6">
                 <li>Serwis zbiera informacje za pomocą plików cookies – sesyjnych, stałych i podmiotów zewnętrznych.</li>

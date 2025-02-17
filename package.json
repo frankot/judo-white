@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@friendlycaptcha/sdk": "^0.1.18",
     "framer-motion": "^11.11.17",
     "graphql": "^16.9.0",
     "graphql-request": "^7.1.2",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",
+    "react-google-recaptcha": "^3.1.0",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
@@ -24,6 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-google-recaptcha": "^2.1.9",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "postcss": "^8",

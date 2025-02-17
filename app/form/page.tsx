@@ -1,10 +1,11 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Title from "../components/UI/title";
 import SuccessMessage from "../components/UI/successMessage";
 import { submitForm } from "../utils/submitForm";
 import emailjs from "@emailjs/browser";
+import ReCAPTCHA from "react-google-recaptcha";
 
 type FormType = "membership" | "camps" | "events";
 
@@ -54,6 +55,8 @@ export default function ContactForm() {
     email: "",
     message: "",
   });
+  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   useEffect(() => {
     emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!);
@@ -72,13 +75,26 @@ export default function ContactForm() {
     };
   }, []);
 
+  // Verify environment variable is loaded
+  useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY) {
+      console.error("reCAPTCHA site key is missing!");
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!captchaValue) {
+      alert("Proszę potwierdzić, że nie jesteś robotem");
+      return;
+    }
+
     try {
       const result = await submitForm({
         formType,
         ...formData,
+        recaptchaToken: captchaValue,
       });
 
       if (result.success) {
@@ -89,6 +105,9 @@ export default function ContactForm() {
           email: "",
           message: "",
         });
+        
+        setCaptchaValue(null);
+        recaptchaRef.current?.reset();
         
         setShowSuccess(true);
         setTimeout(() => setShowSuccess(false), 5000);
@@ -244,11 +263,25 @@ export default function ContactForm() {
               required
             />
           </div>
+          <div className="flex justify-between items-center w-full">
 
-          <div className="flex justify-center">
+          <div className="mt-4">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+              onChange={(token) => setCaptchaValue(token)}
+              hl="pl"
+              asyncScriptOnLoad={() => {
+                // Force re-render after script loads
+                recaptchaRef.current?.reset();
+              }}
+            />
+          </div>
+
+          
             <button
               type="submit"
-              className="rounded bg-stone-950 border border-black px-10 py-2 font-[family-name:var(--font-barlow)] font-semibold uppercase text-white transition-all duration-300 hover:bg-white hover:text-black"
+              className="rounded bg-stone-950 h-fit border border-black px-10 py-2 font-[family-name:var(--font-barlow)] font-semibold uppercase text-white transition-all duration-300 hover:bg-white hover:text-black"
             >
               Wyślij
             </button>
